@@ -152,6 +152,25 @@ public static void requestLeave() {
 
     int days = getValidIntInput("Enter number of days requested: ");
 
+    // PRO UPGRADE: Bussiness Logic Validation - Check if the requested days are valid
+
+    // Rule 1: Cannot request mor days than remaining balance
+    if (days > emp.getRemainingLeaveDays()) {
+        System.err.println("❌ Error: You only have " + emp.get.RemainingLeaveDays() + " days remaining. Request denied.");
+        return;
+    }
+
+    // Rule 2: Cannot request 0 or negative days
+    if (days <= 0) {
+        System.out.println("❌ Error: Leave days must be grater than 0.");
+        return;
+    }
+    // Rule 3: Cannot request more than 30 days at once (Company Policy)
+    if (days > 30) {
+        System.out.println("❌ Error: Company policy limits single requests to 30 days. Please contact HR.");
+        return;
+    }
+
     // BUSINESS LOGIC: Check if they have enough balance
     if (days > emp.getRemainingLeaveDays()) {
         System.out.println("❌ Error: You only have " + emp.getRemainingLeaveDays() + " days remaining");
